@@ -20,11 +20,6 @@ function v = perlinNoise3D(N,varargin)
 %                     amplitute is multiplited for for deeper octaves.
 %                     Default: 0.5.
 %
-%
-% OUTPUT
-% 
-% v (double array)  : array of the chosen dimension with Perlin noise.
-%
 %==========================================================================
 %
 % Version : 1.0 (21-04-2022) Author  : A. Benfenati

@@ -8,6 +8,10 @@ The main.m file has two uses, depending on the *training* option.
  - *training*=0: once the size of the images of the dataset is chosen (128 or 256), it loads the suitable net (**upUNet128.mat** or **upUNet256.mat**) and restore the images in the datastore, removing the Perlin noise.
  - *training*=1: it allows to choose the architecture for the upU-Net and then train it on one of the two datasets contained in the repository. One can generate new dataset of desired dimension using the file datasetGen.m
  
+In case of usage of this code (or part of it), please cite
+
+Benfenati, A. upU-Net Approaches for Background Emission Removal in Fluorescence Microscopy. J. Imaging 2022, 8, 142. https://doi.org/10.3390/jimaging8050142 
+ 
 #### List of files
 
 - **datasetGen.m**: it allows to create the dataset for experiments.synthetic microscopy images affected by Perlin, Gaussian and Poisson noise. The user can choose the option to blur the images via a PSF.

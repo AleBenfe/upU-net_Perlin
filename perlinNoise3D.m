@@ -20,9 +20,21 @@ function v = perlinNoise3D(N,varargin)
 %                     amplitute is multiplited for for deeper octaves.
 %                     Default: 0.5.
 %
+% x_scale (double)  : scaling in the x-axis. Default: 1.
+%
+% y_scale (double)  : scaling in the y-axis. Default: 1.
+%
+% z_scale (double)  : scaling in the z-axis. Default: 1.
+%
+%
+% OUTPUT
+% 
+% v (double array)  : array of the chosen dimension with Perlin noise with
+%                     values in [0,1].
+%
 %==========================================================================
 %
-% Version : 1.0 (21-04-2022) Author  : A. Benfenati
+% Version : 1.1 (02-02-2023) Author  : A. Benfenati
 % (alessandro.benfenati@unimi.it)
 %
 %==========================================================================
@@ -60,9 +72,12 @@ if prod(size(N))>3
     error('Dimension mismatch: 4D noise (or larger) not implemented yet.')
 end
 
-freqInit = 1.0;
-amplInit = 1.0;
+freqInit    = 1.0;
+amplInit    = 1.0;
 persistence = 0.5;
+x_scale     = 1;
+y_scale     = 1;
+z_scale     = 1;
 
 if (nargin-length(varargin)) ~= 1
     error('Wrong number of required parameters');
@@ -80,6 +95,12 @@ else
                 amplInit = varargin{i+1};
             case 'P'
                 persistence = varargin{i+1};
+            case 'X_SCALE'
+                x_scale = varargin{i+1};
+            case 'Y_SCALE'
+                y_scale = varargin{i+1};
+            case 'Z_SCALE'
+                z_scale = varargin{i+1};
         end
     end
 end
@@ -98,9 +119,9 @@ for z = 1:N(3)
             frequency = freqInit;
             amplitude = amplInit;
 
-            xf = (x-1)/N(1)+1;
-            yf = (y-1)/N(2)+1;
-            zf = (z-1)/N(3)+1;
+            xf = x_scale*(x-1)/N(1)+1;
+            yf = y_scale*(y-1)/N(2)+1;
+            zf = z_scale*(z-1)/N(3)+1;
             for k = 1:8
                 temp = temp + amplitude*truePerlin3d(frequency*xf,frequency*yf,frequency*zf,pos);
                 frequency = frequency*2;
